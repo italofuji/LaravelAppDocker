@@ -12,11 +12,10 @@ COPY . /var/www
 RUN ln -s public html
 
 RUN composer install && \
-    # cp .env .env && \
     php artisan key:generate && \
     php artisan config:cache
 
-
+RUN chown -R www-data:root /var/www/storage
 
 EXPOSE 9000
 ENTRYPOINT [ "php-fpm" ]
