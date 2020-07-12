@@ -7,22 +7,22 @@ steps:
     name: "gcr.io/$PROJECT_ID/docker"
     args: ["ps"]
 
-- id: "Composer install in App Container"
-    name: "gcr.io/$PROJECT_ID/docker"
-    args: ["exec", "-t", "app","composer", "install"]
+  - id: "Composer install in App Container"
+      name: "gcr.io/$PROJECT_ID/docker"
+      args: ["exec", "-t", "app","composer", "install"]
 
-- id: "Copy enviroment variable file (.env)"
-    name: "gcr.io/$PROJECT_ID/docker"
-    args: ["exec", "-t", "app","cp", ".env-example", ".env"]
+  - id: "Copy enviroment variable file (.env)"
+      name: "gcr.io/$PROJECT_ID/docker"
+      args: ["exec", "-t", "app","cp", ".env-example", ".env"]
 
-- id: "Keygenerate: key:generate"
-    name: "gcr.io/$PROJECT_ID/docker"
-    args: ["exec", "-t", "app","php", "/var/www/artisan", "key:generate"]
+  - id: "Keygenerate: key:generate"
+      name: "gcr.io/$PROJECT_ID/docker"
+      args: ["exec", "-t", "app","php", "/var/www/artisan", "key:generate"]
 
-- id: "Running Migrations"
-    name: "gcr.io/$PROJECT_ID/docker"
-    args: ["exec", "-t", "app","php", "/var/www/artisan", "migrate"]
+  - id: "Running Migrations"
+      name: "gcr.io/$PROJECT_ID/docker"
+      args: ["exec", "-t", "app","php", "/var/www/artisan", "migrate"]
 
-- id: "Running phpunit"
-    name: "gcr.io/$PROJECT_ID/docker"
-    args: ["exec", "-t", "app","php", "/var/www/vendor/bin/phpunit", "-c", "/var/www/phpunit.xml"]
+  - id: "Running phpunit"
+      name: "gcr.io/$PROJECT_ID/docker"
+      args: ["exec", "-t", "app","php", "/var/www/vendor/bin/phpunit", "-c", "/var/www/phpunit.xml"]
