@@ -23,7 +23,7 @@ steps:
     name: "gcr.io/$PROJECT_ID/docker"
     args: ["exec", "-t", "app", "php", "/var/www/artisan", "migrate"]
 
-  - id: "Running phpunit"
+  - id: "Running Phpunit"
     name: "gcr.io/$PROJECT_ID/docker"
     args:
       [
